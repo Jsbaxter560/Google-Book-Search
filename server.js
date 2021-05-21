@@ -32,7 +32,7 @@ app.delete("/api/books/:id", function (req, res) {
 
 app.get("/api/google", function (req, res) {
   // use axios to make a querry to google api endpoint for a specific book
-  axios.get("https://www.googleapis.com/books/v1/volumes?q=req.query").then(function(data){
+  axios.get("https://www.googleapis.com/books/v1/volumes?q="+req.query.book).then(function(data){
     res.json(data.data.items)
   })
   console.log("req.query",req.query);
