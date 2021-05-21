@@ -1,5 +1,7 @@
+const { response } = require("express");
 const express = require("express");
 const path = require("path");
+const axios = require("axios");
 const PORT = process.env.PORT || 3001;
 const app = express();
 
@@ -12,7 +14,30 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // Define API routes here
+app.get("/api/books", function (req, res) {
+  //database querry to get all saved books as json
+  res.json([])
+});
 
+app.post("/api/books", function (req, res) {
+  // database querry to create a new book where saved = true
+  res.json([])
+  
+});
+
+app.delete("/api/books/:id", function (req, res) {
+  // database querry to delete a book where id = req.params.id
+  res.json([])
+});
+
+app.get("/api/google", function (req, res) {
+  // use axios to make a querry to google api endpoint for a specific book
+  axios.get("https://www.googleapis.com/books/v1/volumes?q=req.query").then(function(data){
+    res.json(data.data.items)
+  })
+  console.log("req.query",req.query);
+  //res.json([])
+});
 // Send every other request to the React app
 // Define any API routes before this runs
 app.get("*", (req, res) => {
